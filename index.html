@@ -1,115 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inscrição Guaira Cup</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: white;
-    }
-
-    header {
-      text-align: center;
-      padding: 35px 20px;
-      background: linear-gradient(135deg, #000, #222);
-      border-bottom: 4px solid gold;
-    }
-
-    header h1 {
-      color: gold;
-      font-size: 38px;
-      margin: 0;
-    }
-
-    header p {
-      color: #ddd;
-      font-size: 17px;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 25px auto;
-      background: #181818;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 12px #000;
-    }
-
-    h2 {
-      color: gold;
-      text-align: center;
-    }
-
-    label {
-      font-weight: bold;
-      margin-top: 12px;
-      display: block;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 8px;
-      font-size: 15px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background: gold;
-      color: black;
-      border: none;
-      border-radius: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      color: #aaa;
-      padding: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guaira Cup</title>
 </head>
 <body>
+<h1>🏆 Guaira Cup</h1>
+<p>Inscreva seu time no campeonato</p>
 
-  <header>
-    <h1>🏆 Guaira Cup</h1>
-    <p>Inscreva seu time no campeonato</p>
-  </header>
+<form onsubmit="enviarWhatsApp(); return false;">
+  <input id="time" placeholder="Nome do Time" required><br><br>
+  <input id="responsavel" placeholder="Nome do Responsável" required><br><br>
+  <input id="whatsapp" placeholder="WhatsApp" required><br><br>
+  <input id="jogadores" placeholder="Quantidade de Jogadores" required><br><br>
+  <textarea id="obs" placeholder="Observações"></textarea><br><br>
+  <button type="submit">Enviar Inscrição</button>
+</form>
 
-  <div class="container">
-    <h2>📝 Formulário de Inscrição</h2>
+<script>
+function enviarWhatsApp() {
+  let time = document.getElementById("time").value;
+  let responsavel = document.getElementById("responsavel").value;
+  let whatsapp = document.getElementById("whatsapp").value;
+  let jogadores = document.getElementById("jogadores").value;
+  let obs = document.getElementById("obs").value;
 
-    <form onsubmit="enviarWhatsApp(); return false;">
-      <label>Nome do Time</label>
-      <input id="time" type="text" placeholder="Ex: Leões FC" required>
+  let mensagem =
+    "🏆 Inscrição Guaira Cup\n\n" +
+    "Time: " + time + "\n" +
+    "Responsável: " + responsavel + "\n" +
+    "WhatsApp: " + whatsapp + "\n" +
+    "Jogadores: " + jogadores + "\n" +
+    "Observações: " + obs;
 
-      <label>Nome do Responsável</label>
-      <input id="responsavel" type="text" placeholder="Seu nome" required>
-
-      <label>WhatsApp</label>
-      <input id="whatsapp" type="tel" placeholder="(16) 99999-9999" required>
-
-      <label>Categoria</label>
-      <select id="categoria" required>
-        <option value="">Selecione</option>
-        <option>Sub-9</option>
-        <option>Sub-11</option>
-        <option>Sub-13</option>  
-      </select>
-
-      <label>Quantidade de Jogadores</label>
-      <input id="jogadores" type="number" placeholder="Ex: 8" required>
-
-      <label>Observações</label>
-      <textarea id="obs" rows="4" placeholder="Ex: horário disponível
-let numero = "5517991967424";
+  let numero = "5517991967424";
+  let link = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+  window.location.href = link;
+}
+</script>
+</body>
+</html>
