@@ -7,92 +7,85 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
 }
 
 body{
-    background:#0f0f0f;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#050505,#1c1c1c);
     color:white;
 }
 
 header{
-    background:linear-gradient(135deg,#000,#222);
     text-align:center;
-    padding:50px 20px;
+    padding:45px 20px;
+    background:linear-gradient(135deg,#000,#222);
     border-bottom:5px solid gold;
 }
 
 header h1{
     color:gold;
-    font-size:45px;
+    font-size:42px;
+    margin:0;
 }
 
 header p{
-    margin-top:10px;
     color:#ddd;
+    font-size:18px;
 }
 
 .container{
     max-width:700px;
-    margin:30px auto;
-    padding:25px;
+    margin:25px auto;
+    padding:20px;
 }
 
-.info{
-    background:#1a1a1a;
-    padding:20px;
-    border-radius:15px;
-    border-left:5px solid gold;
+.info, .formulario{
+    background:#151515;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 0 18px rgba(255,215,0,0.25);
     margin-bottom:25px;
 }
 
-.info p{
-    margin:10px 0;
-}
-
-.formulario{
-    background:#1a1a1a;
-    padding:25px;
-    border-radius:15px;
-}
-
-.formulario h2{
+.info h2, .formulario h2{
     color:gold;
     text-align:center;
-    margin-bottom:20px;
+}
+
+.info p, .info li{
+    font-size:16px;
+    line-height:1.5;
+}
+
+ul{
+    padding-left:20px;
 }
 
 label{
     display:block;
-    margin-top:15px;
-    margin-bottom:5px;
+    margin-top:14px;
+    font-weight:bold;
 }
 
-input,
-textarea,
-select{
+input, textarea{
     width:100%;
-    padding:12px;
+    padding:13px;
+    margin-top:6px;
     border:none;
-    border-radius:8px;
+    border-radius:10px;
     font-size:15px;
-}
-
-textarea{
-    resize:vertical;
 }
 
 button{
     width:100%;
     padding:15px;
-    margin-top:20px;
+    margin-top:22px;
     background:gold;
     color:black;
     border:none;
-    border-radius:10px;
+    border-radius:12px;
     font-size:18px;
     font-weight:bold;
     cursor:pointer;
@@ -114,60 +107,58 @@ footer{
 
 <header>
     <h1>🏆 Guaira Cup 2026</h1>
-    <p>Inscreva seu time e participe da disputa pelo título!</p>
+    <p>Inscreva seu time e participe do campeonato!</p>
 </header>
 
 <div class="container">
 
     <div class="info">
+        <h2>🏆 Informações do Campeonato</h2>
         <p><b>🏆 Organização:</b> Guaira Cup</p>
         <p><b>📍 Local:</b> AABB</p>
         <p><b>⚽ Categoria:</b> Sub-11</p>
 
-        <p><b>🥇 1º Lugar:</b> Troféu e Medalhas</p>
-        <p><b>🥈 2º Lugar:</b> Troféu e Medalhas</p>
-        <p><b>🥉 3º Lugar:</b> Troféu e Medalhas</p>
+        <p><b>🏅 Premiação:</b></p>
+        <ul>
+            <li>🥇 Medalhas para todos os jogadores do time campeão</li>
+            <li>🏆 Troféus individuais</li>
+        </ul>
     </div>
 
     <div class="formulario">
-
         <h2>📝 Inscrição do Time</h2>
 
         <form onsubmit="enviarWhatsApp(); return false;">
 
             <label>⚽ Nome do Time</label>
-            <input id="time" type="text" required>
+            <input id="time" type="text" placeholder="Ex: Leões FC" required>
 
             <label>👤 Nome do Responsável</label>
-            <input id="responsavel" type="text" required>
+            <input id="responsavel" type="text" placeholder="Nome do responsável" required>
 
-            <label>📱 WhatsApp</label>
-            <input id="whatsapp" type="text" required>
+            <label>📱 WhatsApp do Responsável</label>
+            <input id="whatsapp" type="text" placeholder="Ex: (17) 99999-9999" required>
 
             <label>📷 Instagram do Time</label>
-            <input id="instagram" type="text">
+            <input id="instagram" type="text" placeholder="@nomedotime">
 
             <label>👥 Quantidade de Jogadores</label>
-            <input id="jogadores" type="number" required>
+            <input id="jogadores" type="number" placeholder="Ex: 8" required>
 
             <label>📝 Nome dos Jogadores</label>
-            <textarea id="nomes" rows="4"></textarea>
+            <textarea id="nomes" rows="4" placeholder="Digite os nomes dos jogadores"></textarea>
 
             <label>🖼️ Link da Foto ou Escudo do Time</label>
-            <input id="foto" type="text">
+            <input id="foto" type="text" placeholder="Cole o link da foto ou escudo">
 
             <label>📍 Cidade/Bairro</label>
-            <input id="cidade" type="text">
+            <input id="cidade" type="text" placeholder="Ex: Guaíra/SP">
 
             <label>ℹ️ Observações</label>
-            <textarea id="obs" rows="3"></textarea>
+            <textarea id="obs" rows="3" placeholder="Algo importante sobre o time"></textarea>
 
-            <button type="submit">
-                Enviar Inscrição pelo WhatsApp
-            </button>
-
+            <button type="submit">Enviar Inscrição pelo WhatsApp</button>
         </form>
-
     </div>
 
 </div>
@@ -179,37 +170,22 @@ footer{
 <script>
 function enviarWhatsApp(){
 
-let time = document.getElementById("time").value;
-let responsavel = document.getElementById("responsavel").value;
-let whatsapp = document.getElementById("whatsapp").value;
-let instagram = document.getElementById("instagram").value;
-let jogadores = document.getElementById("jogadores").value;
-let nomes = document.getElementById("nomes").value;
-let foto = document.getElementById("foto").value;
-let cidade = document.getElementById("cidade").value;
-let obs = document.getElementById("obs").value;
+    let mensagem =
+    "🏆 INSCRIÇÃO GUAIRA CUP 2026\n\n" +
+    "⚽ Time: " + document.getElementById("time").value + "\n" +
+    "👤 Responsável: " + document.getElementById("responsavel").value + "\n" +
+    "📱 WhatsApp: " + document.getElementById("whatsapp").value + "\n" +
+    "📷 Instagram: " + document.getElementById("instagram").value + "\n" +
+    "👥 Quantidade de jogadores: " + document.getElementById("jogadores").value + "\n" +
+    "📝 Jogadores: " + document.getElementById("nomes").value + "\n" +
+    "🖼️ Foto/Escudo: " + document.getElementById("foto").value + "\n" +
+    "📍 Cidade/Bairro: " + document.getElementById("cidade").value + "\n" +
+    "ℹ️ Observações: " + document.getElementById("obs").value;
 
-let mensagem =
-"🏆 INSCRIÇÃO GUAIRA CUP 2026\n\n" +
-"⚽ Time: " + time + "\n" +
-"👤 Responsável: " + responsavel + "\n" +
-"📱 WhatsApp: " + whatsapp + "\n" +
-"📷 Instagram: " + instagram + "\n" +
-"👥 Jogadores: " + jogadores + "\n" +
-"📝 Lista dos jogadores: " + nomes + "\n" +
-"🖼️ Foto/Escudo: " + foto + "\n" +
-"📍 Cidade/Bairro: " + cidade + "\n" +
-"ℹ️ Observações: " + obs;
+    let numero = "5517991967424";
+    let link = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
 
-let numero = "5517991967424";
-
-let link =
-"https://wa.me/" +
-numero +
-"?text=" +
-encodeURIComponent(mensagem);
-
-window.open(link, "_blank");
+    window.open(link, "_blank");
 }
 </script>
 
